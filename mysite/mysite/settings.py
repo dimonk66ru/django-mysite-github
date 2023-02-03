@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 from pathlib import Path
 
+import requestdataapp.middlewares
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -50,7 +52,8 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'requestdataapp.middlewares.set_useragent_on_request_middleware',
-    'requestdataapp.middlewares.CountRequestsMiddleware'
+    'requestdataapp.middlewares.CountRequestsMiddleware',
+    # 'requestdataapp.middlewares.ThrottlingMiddleware'
 ]
 
 ROOT_URLCONF = 'mysite.urls'

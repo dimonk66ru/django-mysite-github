@@ -22,7 +22,10 @@ def user_form(request: HttpRequest) -> HttpResponse:
 def handle_file_upload(request: HttpRequest) -> HttpResponse:
     if request.method == "POST" and request.FILES.get("myfile"):
         myfile = request.FILES["myfile"]
-        fs = FileSystemStorage()
-        filename = fs.save(myfile.name, myfile)
-        print("saved file", filename)
+        if myfile.size < 1048576:
+            fs = FileSystemStorage()
+            filename = fs.save(myfile.name, myfile)
+            print("saved file", filename)
+        else:
+            print(f'!!! Your file {myfile.size} bytes is too big, you can upload less than one megabyte !!!')
     return render(request, "requestdataapp/file-upload.html")

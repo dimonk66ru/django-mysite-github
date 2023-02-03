@@ -133,3 +133,5 @@ dmypy.json
 .idea/
 
 first_djangosite/
+textfile
+probe.py
