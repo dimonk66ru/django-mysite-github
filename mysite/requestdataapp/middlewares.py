@@ -30,9 +30,9 @@ class CountRequestsMiddleware:
         ip_address = request.META["REMOTE_ADDR"]
         if ip_address in self.log_ip_dict:
             if self.log_ip_dict[ip_address] > 1:
-                if (time.time() - self.log_ip_dict[ip_address]) < 3:
+                if (time.time() - self.log_ip_dict[ip_address]) < 1:
                     print("!!! You make requests very often !!!")
-                    return
+                    # raise ValueError
 
         response = self.get_response(request)
         self.log_ip_dict[ip_address] = time.time()
