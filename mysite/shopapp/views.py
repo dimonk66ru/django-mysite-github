@@ -52,6 +52,7 @@ class ProductListView(ListView):
 
 
 class ProductCreateView(UserPassesTestMixin, CreateView):
+    # TODO в этом представлении заданием предусматривалась проверка наличия права shopapp.add_product c помощью PermissionRequiredMixin
     def test_func(self):
         return self.request.user.groups.filter(name="managers-group").exists()
         # return self.request.user.is_superuser
@@ -67,6 +68,8 @@ class ProductCreateView(UserPassesTestMixin, CreateView):
 
 
 class ProductUpdateView(UpdateView):
+    # TODO а в этом представлении надо использовать UserPassesTestMixin с проверкой принадлежности записи
+    #  авторизованному пользователю и всем остальным что указано в задании
     model = Product
     form_class = ProductForm
     template_name_suffix = "_update_form"
