@@ -10,6 +10,7 @@ class Product(models.Model):
     description = models.TextField(null=False, blank=True)
     price = models.DecimalField(default=0, max_digits=8, decimal_places=2)
     discount = models.PositiveSmallIntegerField(default=0)
+    created_by = models.ForeignKey(User, on_delete=models.PROTECT)
     created_at = models.DateTimeField(auto_now_add=True)
     archived = models.BooleanField(default=False)
 

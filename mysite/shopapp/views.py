@@ -1,4 +1,5 @@
 from timeit import default_timer
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.models import Group
 from django.http import HttpResponse, HttpRequest, HttpResponseRedirect
 from django.shortcuts import render, redirect, reverse, get_object_or_404
@@ -50,7 +51,16 @@ class ProductListView(ListView):
     context_object_name = "products"
 
 
-class ProductCreateView(CreateView):
+class ProductCreateView(UserPassesTestMixin, CreateView):
+    def test_func(self):
+        return self.request.user.groups.filter(name="managers-group").exists()
+        # return self.request.user.is_superuser
+
+    def form_valid(self, form):
+        form.instance.created_by = self.request.user
+        self.object = form.save()
+        return super().form_valid(form)
+
     model = Product
     form_class = ProductForm
     success_url = reverse_lazy("shopapp:products_list")
@@ -94,7 +104,7 @@ def create_product(request: HttpRequest) -> HttpResponse:
     return render(request, "shopapp/create-product.html", context=context)
 
 
-class OrderListView(ListView):
+class OrderListView(LoginRequiredMixin, ListView):
     queryset = (
         Order.objects
         .select_related("user")
@@ -102,7 +112,8 @@ class OrderListView(ListView):
     )
 
 
-class OrderDetailView(DetailView):
+class OrderDetailView(PermissionRequiredMixin, DetailView):
+    permission_required = "shopapp.view_order"
     queryset = (
         Order.objects
         .select_related("user")
