@@ -51,11 +51,8 @@ class ProductListView(ListView):
     context_object_name = "products"
 
 
-class ProductCreateView(UserPassesTestMixin, CreateView):
-    # TODO в этом представлении заданием предусматривалась проверка наличия права shopapp.add_product c помощью PermissionRequiredMixin
-    def test_func(self):
-        return self.request.user.groups.filter(name="managers-group").exists()
-        # return self.request.user.is_superuser
+class ProductCreateView(PermissionRequiredMixin, CreateView):
+    permission_required = "shopapp.add_product"
 
     def form_valid(self, form):
         form.instance.created_by = self.request.user
@@ -67,9 +64,15 @@ class ProductCreateView(UserPassesTestMixin, CreateView):
     success_url = reverse_lazy("shopapp:products_list")
 
 
-class ProductUpdateView(UpdateView):
-    # TODO а в этом представлении надо использовать UserPassesTestMixin с проверкой принадлежности записи
-    #  авторизованному пользователю и всем остальным что указано в задании
+class ProductUpdateView(UserPassesTestMixin, UpdateView):
+    def test_func(self):
+        if self.request.user.is_superuser:
+            return True
+        product_obj = get_object_or_404(Product, pk=self.kwargs.get('pk'))
+        if product_obj.created_by == self.request.user:
+            if self.request.user.has_perm('shopapp.change_product'):
+                return True
+
     model = Product
     form_class = ProductForm
     template_name_suffix = "_update_form"
