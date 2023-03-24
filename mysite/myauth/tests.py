@@ -1,3 +1,26 @@
-from django.test import TestCase
+from django.test import TestCase, Client
+from django.urls import reverse
 
-# Create your tests here.
+
+class GetCookieViewTestCase(TestCase):
+    def setUp(self) -> None:
+        self.client = Client(HTTP_USER_AGENT="Mozilla")
+
+    def test_get_cookie_view(self):
+        response = self.client.get(reverse("myauth:cookie-get"))
+        self.assertContains(response, "Cookie value")
+
+
+class FooBarViewTest(TestCase):
+    def setUp(self) -> None:
+        self.client = Client(HTTP_USER_AGENT="Mozilla")
+
+    def test_foo_bar_view(self):
+        response = self.client.get(reverse("myauth:foo-bar"))
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(
+            response.headers['content-type'], 'application/json',
+        )
+        expected_data = {"foo": "bar", "spam": "eggs"}
+        self.assertJSONEqual(response.content, expected_data)
+
