@@ -193,8 +193,7 @@ class OrdersDataExportView(UserPassesTestMixin, View):
                 "delivery_address": order.delivery_address,
                 "promocode": order.promocode,
                 "user": order.user.pk,
-                "products": order.products,  # TODO тут надо передавать не QuerySet, а список:
-                                             #  [p.pk for p in order.products.all()],
+                "products": [p.pk for p in order.products.all()],
             }
             for order in orders
         ]

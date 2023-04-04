@@ -17,6 +17,7 @@ class AddTwoNumbersTestCase(TestCase):
 class ProductCreateViewTestCase(TestCase):
     @classmethod
     def setUpClass(cls):
+        super().setUpClass()
         cls.user = User.objects.create_superuser(username="admin", password="23")
         cls.product_name = "".join(choices(ascii_letters, k=10))
         Product.objects.filter(name=cls.product_name).delete()
@@ -24,6 +25,7 @@ class ProductCreateViewTestCase(TestCase):
     @classmethod
     def tearDownClass(cls):
         cls.user.delete()
+        super().tearDownClass()
 
     def setUp(self) -> None:
         self.client = Client(HTTP_USER_AGENT="Mozilla")
@@ -55,6 +57,7 @@ class ProductDetailsViewTestCase(TestCase):
 
     def tearDown(self):
         self.product.delete()
+        super().tearDownClass()
 
     def test_get_product(self):
         response = self.client.get(
@@ -103,11 +106,13 @@ class ProductsListViewTestCase(TestCase):
 class OrdersListViewTestCase(TestCase):
     @classmethod
     def setUpClass(cls):
+        super().setUpClass()
         cls.user = User.objects.create_user(username="admin", password="23")
 
     @classmethod
     def tearDownClass(cls):
         cls.user.delete()
+        super().tearDownClass()
 
     def setUp(self):
         self.client = Client(HTTP_USER_AGENT="Mozilla")
@@ -158,6 +163,7 @@ class ProductsExportViewTestCase(TestCase):
 class OrderDetailViewTestCase(TestCase):
     @classmethod
     def setUpClass(cls):
+        super().setUpClass()
         cls.user = User.objects.create_user(username="admin", password="23")
         perm = Permission.objects.get(codename="view_order")
         cls.user.user_permissions.add(perm)
@@ -165,6 +171,7 @@ class OrderDetailViewTestCase(TestCase):
     @classmethod
     def tearDownClass(cls):
         cls.user.delete()
+        super().tearDownClass()
 
     def setUp(self):
         self.client = Client(HTTP_USER_AGENT="Mozilla")
@@ -197,14 +204,8 @@ class OrderExportTestCase(TestCase):
 
     @classmethod
     def setUpClass(cls):
-        # TODO вы переопределили метод setUpClass, но не вызвали код метода из класса предка (через super), поэтому
-        #  фикстуры сейчас не подгружаются. В документации есть об этом отдельное предупреждение:
-        #  https://docs.djangoproject.com/en/4.0/topics/testing/tools/#django.test.SimpleTestCase.databases
-        cls.user = User.objects.create_user(username="admin", password="23", is_staff="1")
-
-    @classmethod
-    def tearDownClass(cls):
-        cls.user.delete()
+        super().setUpClass()
+        cls.user = User.objects.get(username="admin")
 
     def setUp(self):
         self.client = Client(HTTP_USER_AGENT="Mozilla")
@@ -222,7 +223,7 @@ class OrderExportTestCase(TestCase):
                 "delivery_address": order.delivery_address,
                 "promocode": order.promocode,
                 "user": order.user.pk,
-                "products": order.products,  # TODO аналогично предыдущему (см. тестируемое представление)
+                "products": [p.pk for p in order.products.all()],
             }
             for order in orders
         ]
