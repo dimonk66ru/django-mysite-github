@@ -8,11 +8,22 @@
     <h1>User info</h1>
     {% if user.is_authenticated %}
         <h2>Detail</h2>
+        {% if user.profile.avatar %}
+            <img src="{{ user.profile.avatar.url }}" alt="{{ user.profile.avatar.name }}"/>
+        {% else %}
+            <div>No images uploaded yet</div>
+        {% endif %}
         <p>Username: {{ user.username }}</p>
         <p>First name: {{ user.first_name }}</p>
         <p>Last name: {{ user.last_name }}</p>
         <p>Email: {{ user.email }}</p>
         <p>Bio: {{ user.profile.bio }}</p>
+        <div>
+            <a href="{% url 'myauth:profiles-list' %}">Profiles list</a>
+        </div>
+        <div>
+            <a href="{% url 'myauth:profile-update' pk=user.profile.pk %}">Update profile</a>
+        </div>
     {% else %}
         <h2>User is anonymous</h2>
     {% endif %}

@@ -4,19 +4,27 @@ from django.contrib.auth.forms import UserCreationForm
 from django.http import HttpRequest, HttpResponse, JsonResponse
 from django.urls import reverse_lazy
 from django.contrib.auth.views import LogoutView
-from django.views.generic import TemplateView, CreateView
+from django.views.generic import TemplateView, CreateView, UpdateView, ListView, DetailView
 from django.views import View
 from .models import Profile
+from django.shortcuts import reverse, get_object_or_404
+from django.contrib.auth.mixins import UserPassesTestMixin
 
 
 class AboutMeView(TemplateView):
     template_name = "myauth/about-me.html"
 
 
+class ProfilesListView(ListView):
+    template_name = "myauth/profiles-list.html"
+    model = Profile
+    context_object_name = "profiles"
+
+
 class RegisterView(CreateView):
     form_class = UserCreationForm
     template_name = "myauth/register.html"
-    success_url = reverse_lazy("myauth/about-me.html")
+    success_url = reverse_lazy("myauth:about-me")
 
     def form_valid(self, form):
         response = super().form_valid(form)
@@ -30,6 +38,26 @@ class RegisterView(CreateView):
         )
         login(request=self.request, user=user)
         return response
+
+
+class ProfileUpdateView(UserPassesTestMixin, UpdateView):
+    def test_func(self):
+        if self.request.user.is_staff:
+            return True
+        profile_obj = get_object_or_404(Profile, pk=self.kwargs.get('pk'))
+        if profile_obj.pk == self.request.user.profile.pk:
+            return True
+
+    model = Profile
+    fields = "bio", "avatar"
+    template_name = "myauth/profile_update_form.html"
+    success_url = reverse_lazy("myauth:about-me")
+
+
+class ProfileView(DetailView):
+    template_name = "myauth/profile-details.html"
+    model = Profile
+    context_object_name = "profile"
 
 
 class MyLogoutView(LogoutView):

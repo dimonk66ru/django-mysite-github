@@ -1,12 +1,16 @@
 from django.contrib import admin
 from django.db.models import QuerySet
 from django.http import HttpRequest
-from .models import Product, Order
+from .models import Product, Order, ProductImage
 from .admin_mixins import ExportAsCSVMixin
 
 
 class OrderInline(admin.StackedInline):
     model = Product.orders.through
+
+
+class ProductInLine(admin.TabularInline):
+    model = ProductImage
 
 
 @admin.action(description="Archive products")
@@ -28,6 +32,7 @@ class ProductAdmin(admin.ModelAdmin, ExportAsCSVMixin):
     ]
     inlines = [
         OrderInline,
+        ProductInLine,
     ]
     list_display = "id", "name", "description_short", "price", "discount", "created_by", "created_at", "archived"
     list_display_links = "id", "name"
@@ -45,7 +50,10 @@ class ProductAdmin(admin.ModelAdmin, ExportAsCSVMixin):
             "fields": ("archived",),
             "classes": ("collapse",),
             "description": "Fields 'archived' is for soft delete",
-        })
+        }),
+        ("Images", {
+            "fields": ("preview", ),
+        }),
     ]
 
     def description_short(self, obj: Product) -> str:
