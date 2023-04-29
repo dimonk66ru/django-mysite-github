@@ -1,19 +1,20 @@
 {% extends 'shopapp/base.html' %}
+{% load i18n %}
 
 {% block title %}
-    Order list
+    {% trans "Order list" %}
 {% endblock %}
 
 {% block body %}
-    <h1>Orders:</h1>
+    <h1>{% trans "Orders" %}:</h1>
     {% if object_list %}
         <div>
         {% for order in object_list %}
             <div>
-                <p><a href="{% url 'shopapp:order_detail' pk=order.pk %}">Details #{{ order.pk }}</a></p>
-                <p>Order by {% firstof order.user.first_name order.user.username %}</p>
-                <p>Promocode: <code>{{ order.promocode }}</code></p>
-                <p>Delivery address: {{ order.delivery_address }}</p>
+                <p><a href="{% url 'shopapp:order_detail' pk=order.pk %}">{% trans "Details" %} #{{ order.pk }}</a></p>
+                <p>{% trans "Order by" %} {% firstof order.user.first_name order.user.username %}</p>
+                <p>{% trans "Promocode" %}: <code>{{ order.promocode }}</code></p>
+                <p>{% trans "Delivery address" %}: {{ order.delivery_address }}</p>
                 <div>
                     Products in order:
                 </div>
@@ -26,9 +27,9 @@
         {% endfor %}
         </div>
     {% else %}
-        <h3>No orders yet</h3>
+        <h3>{% trans "No orders yet" %}</h3>
     {% endif %}
     <div>
-        <a href="{% url 'shopapp:order_create' %}">Create a new order</a>
+        <a href="{% url 'shopapp:order_create' %}">{% trans "Create a new order" %}</a>
     </div>
 {% endblock %}

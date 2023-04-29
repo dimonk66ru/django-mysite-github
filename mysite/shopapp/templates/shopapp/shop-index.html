@@ -1,36 +1,37 @@
 {% extends 'shopapp/base.html' %}
+{% load i18n %}
 
 {% block title %}
-    Shop Index
+    {% trans "Shop Index" %}
 {% endblock %}
 
 {% block body %}
-<h1>Hello Shop Index</h1>
+<h1>{% trans "Hello Shop Index" %}</h1>
 
 <div>
     <ul>
-        Call Right now:
+        {% trans "Call Right now" %}:
         {% for name, price in products %}
             <li>{{ name|title }} for {{ price }} $</li>
         {% empty %}
-            No products
+            {% trans "No products" %}
         {% endfor %}
     </ul>
 </div>
 
 <div>
     <ul>
-        Tomorrow:
+        {% trans "Tomorrow" %}:
         {% for name, price in products %}
             <li>{{ name|title }} for {{ price|add:"2" }} $</li>
         {% empty %}
-            No products
+            {% trans "No products" %}
         {% endfor %}
     </ul>
 </div>
 
 <div>
-    Time running: {{ time_running|floatformat:"0" }} seconds
+    {% trans "Time running" %}: {{ time_running|floatformat:"0" }} {% trans "seconds" %}
 </div>
 
 <div>

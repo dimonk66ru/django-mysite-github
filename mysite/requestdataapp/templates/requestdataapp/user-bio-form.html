@@ -1,32 +1,33 @@
 {% extends 'requestdataapp/base.html' %}
+{% load i18n %}
 
 {% block title %}
-    User BIO
+    {% trans "User BIO" %}
 {% endblock %}
 
 {% block body %}
-    <h1>User form</h1>
+    <h1>{% trans "User form" %}</h1>
     <div>
         <form method="post">
             {% csrf_token %}
             {{ form.as_p }}
-            <button type="submit">Submit</button>
+            <button type="submit">{% trans "Submit" %}</button>
         </form>
     </div>
     {% if request.POST %}
         <div>
-            <h2>Previous form data:</h2>
+            <h2>{% trans "Previous form data" %}:</h2>
             <table>
                 <tr>
-                    <td>Full name:</td>
+                    <td>{% trans "Full name" %}:</td>
                     <td>{{ request.POST.name }}</td>
                 </tr>
                 <tr>
-                    <td>Age:</td>
+                    <td>{% trans "Age" %}:</td>
                     <td>{{ request.POST.age }}</td>
                 </tr>
                 <tr>
-                    <td>Bio:</td>
+                    <td>{% trans "Bio" %}:</td>
                     <td>
                         <p>{{ request.POST.bio|linebreaks }}</p>
                     </td>

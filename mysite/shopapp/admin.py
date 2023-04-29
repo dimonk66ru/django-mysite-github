@@ -3,6 +3,7 @@ from django.db.models import QuerySet
 from django.http import HttpRequest
 from .models import Product, Order, ProductImage
 from .admin_mixins import ExportAsCSVMixin
+from django.utils.translation import gettext, gettext_lazy as _
 
 
 class OrderInline(admin.StackedInline):
@@ -13,12 +14,12 @@ class ProductInLine(admin.TabularInline):
     model = ProductImage
 
 
-@admin.action(description="Archive products")
+@admin.action(description=_("Archive products"))
 def mark_archived(modeladmin: admin.ModelAdmin, request: HttpRequest, queryset: QuerySet):
     queryset.update(archived=True)
 
 
-@admin.action(description="Unarchive products")
+@admin.action(description=_("Unarchive products"))
 def mark_unarchived(modeladmin: admin.ModelAdmin, request: HttpRequest, queryset: QuerySet):
     queryset.update(archived=False)
 
@@ -42,20 +43,21 @@ class ProductAdmin(admin.ModelAdmin, ExportAsCSVMixin):
         (None, {
            "fields": ("name", "description", "created_by"),
         }),
-        ("Price options", {
+        (_("Price options"), {
             "fields": ("price", "discount"),
             "classes": ("wide",)
         }),
-        ("Other options", {
+        (_("Other options"), {
             "fields": ("archived",),
             "classes": ("collapse",),
             "description": "Fields 'archived' is for soft delete",
         }),
-        ("Images", {
+        (_("Images"), {
             "fields": ("preview", ),
         }),
     ]
 
+    @admin.display(description=_("description_short"))
     def description_short(self, obj: Product) -> str:
         if len(obj.description) < 48:
             return obj.description
@@ -76,5 +78,6 @@ class OrderAdmin(admin.ModelAdmin):
     def get_queryset(self, request):
         return Order.objects.select_related("user").prefetch_related("products")
 
+    @admin.display(description=_("user_verbouse"))
     def user_verbouse(self, obj: Order) -> str:
         return obj.user.first_name or obj.user.username

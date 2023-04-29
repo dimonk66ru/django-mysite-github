@@ -23,6 +23,7 @@ urlpatterns = [
     path('shop/', include('shopapp.urls')),
     path('req/', include('requestdataapp.urls')),
     path('accounts/', include('myauth.urls')),
+    path('i18n', include('django.conf.urls.i18n')),
 ]
 
 if settings.DEBUG:

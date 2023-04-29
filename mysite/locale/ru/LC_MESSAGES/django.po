@@ -1,0 +1,534 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-04-29 20:49+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
+"(n%100>=11 && n%100<=14)? 2 : 3);\n"
+
+#: myauth/admin.py:11
+msgid "profile name"
+msgstr "имя профиля"
+
+#: myauth/apps.py:8
+msgid "authentication"
+msgstr "аутентификация"
+
+#: myauth/models.py:15
+msgid "profile"
+msgstr "профиль"
+
+#: myauth/models.py:16
+msgid "profiles"
+msgstr "профили"
+
+#: myauth/models.py:21 shopapp/models.py:62
+msgid "user"
+msgstr "пользователь"
+
+#: myauth/models.py:22
+msgid "bio"
+msgstr "био"
+
+#: myauth/models.py:23
+msgid "agreement accepted"
+msgstr "пользовательское соглашение"
+
+#: myauth/models.py:24
+msgid "avatar"
+msgstr "аватарка"
+
+#: myauth/templates/myauth/about-me.html:5
+msgid "About me"
+msgstr "Обо мне"
+
+#: myauth/templates/myauth/about-me.html:9
+msgid "User info"
+msgstr "Информация о пользователе"
+
+#: myauth/templates/myauth/about-me.html:11
+msgid "Detail"
+msgstr "Детали"
+
+#: myauth/templates/myauth/about-me.html:15
+#: myauth/templates/myauth/profile-details.html:13
+#: myauth/templates/myauth/profiles-list.html:16
+#: shopapp/templates/shopapp/products-details.html:27
+msgid "No images uploaded yet"
+msgstr "Картинки ещё не добавлены"
+
+#: myauth/templates/myauth/about-me.html:17
+#: myauth/templates/myauth/profile-details.html:15
+msgid "Username"
+msgstr "Имя пользователя"
+
+#: myauth/templates/myauth/about-me.html:18
+#: myauth/templates/myauth/profile-details.html:16
+msgid "First name"
+msgstr "Имя"
+
+#: myauth/templates/myauth/about-me.html:19
+#: myauth/templates/myauth/profile-details.html:17
+msgid "Last name"
+msgstr "Фамилия"
+
+#: myauth/templates/myauth/about-me.html:20
+#: myauth/templates/myauth/profile-details.html:18
+msgid "Email"
+msgstr "Электронная почта"
+
+#: myauth/templates/myauth/about-me.html:21
+#: myauth/templates/myauth/profile-details.html:19
+#: requestdataapp/templates/requestdataapp/user-bio-form.html:30
+msgid "Bio"
+msgstr "Био"
+
+#: myauth/templates/myauth/about-me.html:23
+#: myauth/templates/myauth/profile-details.html:21
+#: myauth/templates/myauth/profiles-list.html:5
+msgid "Profiles list"
+msgstr "Список профилей"
+
+#: myauth/templates/myauth/about-me.html:26
+#: myauth/templates/myauth/profile-details.html:25
+#: myauth/templates/myauth/profile_update_form.html:9
+msgid "Update profile"
+msgstr "Обновить профиль"
+
+#: myauth/templates/myauth/about-me.html:29
+msgid "User is anonymous"
+msgstr "Анонимный пользователь"
+
+#: myauth/templates/myauth/login.html:5 myauth/templates/myauth/login.html:14
+msgid "Login"
+msgstr "Логин"
+
+#: myauth/templates/myauth/profile-details.html:5
+msgid "Profile Details"
+msgstr "Детали профиля"
+
+#: myauth/templates/myauth/profile-details.html:9
+msgid "Profile info"
+msgstr "Информация профиля"
+
+#: myauth/templates/myauth/profile_update_form.html:5
+msgid "Update Profile"
+msgstr "Обновить Профиль"
+
+#: myauth/templates/myauth/profile_update_form.html:14
+#: shopapp/templates/shopapp/order_update_form.html:14
+#: shopapp/templates/shopapp/product_update_form.html:14
+msgid "Update"
+msgstr "Обновить"
+
+#: myauth/templates/myauth/profile_update_form.html:18
+msgid "Back to profile"
+msgstr "Назад к профилю"
+
+#: myauth/templates/myauth/profiles-list.html:9
+msgid "Profiles"
+msgstr "Профили"
+
+#: myauth/templates/myauth/profiles-list.html:20 shopapp/models.py:19
+msgid "name"
+msgstr "имя"
+
+#: myauth/templates/myauth/profiles-list.html:27
+msgid "No profiles yet"
+msgstr "Ещё нет профилей"
+
+#: myauth/templates/myauth/register.html:5
+#: myauth/templates/myauth/register.html:9
+#: myauth/templates/myauth/register.html:13
+msgid "Register"
+msgstr "Регистрация"
+
+#: requestdataapp/templates/requestdataapp/file-upload.html:5
+msgid "File upload"
+msgstr "Загрузка файла"
+
+#: requestdataapp/templates/requestdataapp/file-upload.html:9
+msgid "Upload file"
+msgstr "Загрузить файл"
+
+#: requestdataapp/templates/requestdataapp/file-upload.html:13
+msgid "Upload"
+msgstr "Загрузить"
+
+#: requestdataapp/templates/requestdataapp/request-query-params.html:5
+msgid "Demo request params"
+msgstr "Демо параментров запроса"
+
+#: requestdataapp/templates/requestdataapp/request-query-params.html:10
+msgid "Hello"
+msgstr "Привет"
+
+#: requestdataapp/templates/requestdataapp/user-bio-form.html:5
+msgid "User BIO"
+msgstr "БИО пользователя"
+
+#: requestdataapp/templates/requestdataapp/user-bio-form.html:9
+msgid "User form"
+msgstr "Форма пользователя"
+
+#: requestdataapp/templates/requestdataapp/user-bio-form.html:14
+msgid "Submit"
+msgstr "Подтвердить"
+
+#: requestdataapp/templates/requestdataapp/user-bio-form.html:19
+msgid "Previous form data"
+msgstr "Данные предыдущей формы"
+
+#: requestdataapp/templates/requestdataapp/user-bio-form.html:22
+msgid "Full name"
+msgstr "Полное имя"
+
+#: requestdataapp/templates/requestdataapp/user-bio-form.html:26
+msgid "Age"
+msgstr "Возраст"
+
+#: shopapp/admin.py:17
+msgid "Archive products"
+msgstr "Архивировать товары"
+
+#: shopapp/admin.py:22
+msgid "Unarchive products"
+msgstr "Разархивировать товары"
+
+#: shopapp/admin.py:46
+msgid "Price options"
+msgstr "Опции цены"
+
+#: shopapp/admin.py:50
+msgid "Other options"
+msgstr "Другии опции"
+
+#: shopapp/admin.py:55 shopapp/templates/shopapp/products-details.html:19
+msgid "Images"
+msgstr "Картинки"
+
+#: shopapp/admin.py:60
+msgid "description_short"
+msgstr "краткое описание"
+
+#: shopapp/admin.py:81
+msgid "user_verbouse"
+msgstr "заказчик"
+
+#: shopapp/apps.py:8
+msgid "shop"
+msgstr "магазин"
+
+#: shopapp/models.py:16
+msgid "product"
+msgstr "товар"
+
+#: shopapp/models.py:17 shopapp/models.py:63
+msgid "products"
+msgstr "товары"
+
+#: shopapp/models.py:20
+msgid "description"
+msgstr "описание"
+
+#: shopapp/models.py:21
+msgid "price"
+msgstr "цена"
+
+#: shopapp/models.py:22
+msgid "discount"
+msgstr "скидка"
+
+#: shopapp/models.py:23
+msgid "created by"
+msgstr "кем создан"
+
+#: shopapp/models.py:24 shopapp/models.py:61
+msgid "created at"
+msgstr "время создания"
+
+#: shopapp/models.py:25
+msgid "archived"
+msgstr "архивирован"
+
+#: shopapp/models.py:26
+msgid "preview"
+msgstr "превью"
+
+#: shopapp/models.py:29 shopapp/templates/shopapp/products-details.html:5
+#: shopapp/templates/shopapp/products-details.html:9
+msgid "Product"
+msgstr "Товар"
+
+#: shopapp/models.py:42
+msgid "product image"
+msgstr "картинка товара"
+
+#: shopapp/models.py:43
+msgid "product images"
+msgstr "картинки товаров"
+
+#: shopapp/models.py:52 shopapp/models.py:56
+msgid "order"
+msgstr "заказ"
+
+#: shopapp/models.py:53
+msgid "orders"
+msgstr "заказы"
+
+#: shopapp/models.py:59
+msgid "delivery address"
+msgstr "адрес доставки"
+
+#: shopapp/models.py:60
+msgid "promocode"
+msgstr "промокод"
+
+#: shopapp/models.py:64
+msgid "receipt"
+msgstr "чек"
+
+#: shopapp/templates/shopapp/base.html:39
+msgid "Today is"
+msgstr "Сегодня"
+
+#: shopapp/templates/shopapp/create-order.html:5
+#: shopapp/templates/shopapp/order_form.html:5
+msgid "Create Order"
+msgstr "Создание заказа"
+
+#: shopapp/templates/shopapp/create-order.html:9
+#: shopapp/templates/shopapp/order_form.html:9
+#: shopapp/templates/shopapp/order_list.html:33
+msgid "Create a new order"
+msgstr "Создание нового заказа"
+
+#: shopapp/templates/shopapp/create-order.html:14
+#: shopapp/templates/shopapp/create-product.html:14
+#: shopapp/templates/shopapp/groups-list.html:14
+#: shopapp/templates/shopapp/order_form.html:14
+#: shopapp/templates/shopapp/product_form.html:14
+msgid "Create"
+msgstr "Создать"
+
+#: shopapp/templates/shopapp/create-order.html:18
+#: shopapp/templates/shopapp/order_form.html:18
+msgid "Back to order list"
+msgstr "Назад к списку заказов"
+
+#: shopapp/templates/shopapp/create-product.html:5
+#: shopapp/templates/shopapp/product_form.html:5
+msgid "Create Product"
+msgstr "Создание товара"
+
+#: shopapp/templates/shopapp/create-product.html:9
+#: shopapp/templates/shopapp/product_form.html:9
+#: shopapp/templates/shopapp/products-list.html:28
+msgid "Create a new product"
+msgstr "Создать новый товар"
+
+#: shopapp/templates/shopapp/create-product.html:18
+#: shopapp/templates/shopapp/product_form.html:18
+msgid "Back to product list"
+msgstr "Назад к списку товаров"
+
+#: shopapp/templates/shopapp/groups-list.html:5
+msgid "Groups List"
+msgstr "Список групп"
+
+#: shopapp/templates/shopapp/groups-list.html:9
+msgid "Groups"
+msgstr "Группы"
+
+#: shopapp/templates/shopapp/groups-list.html:19
+msgid "No groups yet"
+msgstr "ещё нет групп"
+
+#: shopapp/templates/shopapp/order_confirm_delete.html:5
+msgid "Confirm delete"
+msgstr "Подтверждение удаления"
+
+#: shopapp/templates/shopapp/order_confirm_delete.html:9
+msgid "Are you sure, you want to delete"
+msgstr "Вы уверены, что хотите удалить"
+
+#: shopapp/templates/shopapp/order_confirm_delete.html:12
+#: shopapp/templates/shopapp/order_update_form.html:18
+msgid "Back to order"
+msgstr "Назад к заказу"
+
+#: shopapp/templates/shopapp/order_confirm_delete.html:19
+msgid "Delete"
+msgstr "Удаление"
+
+#: shopapp/templates/shopapp/order_detail.html:5
+#: shopapp/templates/shopapp/order_detail.html:9
+msgid "Order"
+msgstr "Заказ"
+
+#: shopapp/templates/shopapp/order_detail.html:11
+#: shopapp/templates/shopapp/order_list.html:15
+msgid "Order by"
+msgstr "Кем заказан"
+
+#: shopapp/templates/shopapp/order_detail.html:12
+#: shopapp/templates/shopapp/order_list.html:16
+msgid "Promocode"
+msgstr "Промокод"
+
+#: shopapp/templates/shopapp/order_detail.html:13
+#: shopapp/templates/shopapp/order_list.html:17
+msgid "Delivery address"
+msgstr "Адрес доставки"
+
+#: shopapp/templates/shopapp/order_detail.html:24
+#: shopapp/templates/shopapp/order_update_form.html:9
+msgid "Update order"
+msgstr "Обновление заказа"
+
+#: shopapp/templates/shopapp/order_detail.html:27
+msgid "Delete order"
+msgstr "Удаление заказа"
+
+#: shopapp/templates/shopapp/order_detail.html:30
+msgid "Back to orders"
+msgstr "Назад к списку заказов"
+
+#: shopapp/templates/shopapp/order_list.html:5
+msgid "Order list"
+msgstr "Список заказов"
+
+#: shopapp/templates/shopapp/order_list.html:9
+msgid "Orders"
+msgstr "Заказы"
+
+#: shopapp/templates/shopapp/order_list.html:14
+msgid "Details"
+msgstr "Детали"
+
+#: shopapp/templates/shopapp/order_list.html:30
+msgid "No orders yet"
+msgstr "ещё нет заказов"
+
+#: shopapp/templates/shopapp/order_update_form.html:5
+msgid "Update Order"
+msgstr "Обновление заказа"
+
+#: shopapp/templates/shopapp/product_confirm_delete.html:5
+msgid "Confirm archive"
+msgstr "Подтверждение архивирования"
+
+#: shopapp/templates/shopapp/product_confirm_delete.html:9
+msgid "Are you sure, you want to archive"
+msgstr "Вы уверены, что хотите архивировать"
+
+#: shopapp/templates/shopapp/product_confirm_delete.html:12
+#: shopapp/templates/shopapp/product_update_form.html:18
+msgid "Back to product"
+msgstr "Назад к товару"
+
+#: shopapp/templates/shopapp/product_confirm_delete.html:19
+msgid "Archive"
+msgstr "Архивировать"
+
+#: shopapp/templates/shopapp/product_update_form.html:5
+msgid "Update Product"
+msgstr "Обновление Товара"
+
+#: shopapp/templates/shopapp/product_update_form.html:9
+#: shopapp/templates/shopapp/products-details.html:33
+msgid "Update product"
+msgstr "Обновление товара"
+
+#: shopapp/templates/shopapp/products-details.html:11
+msgid "Description"
+msgstr "Описание"
+
+#: shopapp/templates/shopapp/products-details.html:12
+#: shopapp/templates/shopapp/products-list.html:15
+msgid "Price"
+msgstr "Цена"
+
+#: shopapp/templates/shopapp/products-details.html:13
+#: shopapp/templates/shopapp/products-list.html:16
+msgid "Discount"
+msgstr "Скидка"
+
+#: shopapp/templates/shopapp/products-details.html:14
+msgid "Created_by"
+msgstr "Кем создан"
+
+#: shopapp/templates/shopapp/products-details.html:15
+msgid "Archived"
+msgstr "Архивирован"
+
+#: shopapp/templates/shopapp/products-details.html:36
+msgid "Archive product"
+msgstr "Архивировать товар"
+
+#: shopapp/templates/shopapp/products-details.html:40
+msgid "Back to products list"
+msgstr "Назад к списку товаров"
+
+#: shopapp/templates/shopapp/products-list.html:5
+msgid "Products list"
+msgstr "Список товаров"
+
+#: shopapp/templates/shopapp/products-list.html:9
+msgid "Products"
+msgstr "Товары"
+
+#: shopapp/templates/shopapp/products-list.html:14
+msgid "Name"
+msgstr "Имя"
+
+#: shopapp/templates/shopapp/products-list.html:24
+msgid "No products yet"
+msgstr "ещё нет товаров"
+
+#: shopapp/templates/shopapp/shop-index.html:5
+msgid "Shop Index"
+msgstr "Магазин Главная Страница"
+
+#: shopapp/templates/shopapp/shop-index.html:9
+msgid "Hello Shop Index"
+msgstr "Привет Магазин Главная Страница"
+
+#: shopapp/templates/shopapp/shop-index.html:13
+msgid "Call Right now"
+msgstr "Позвоните сейчас"
+
+#: shopapp/templates/shopapp/shop-index.html:17
+#: shopapp/templates/shopapp/shop-index.html:28
+msgid "No products"
+msgstr "Нет товаров"
+
+#: shopapp/templates/shopapp/shop-index.html:24
+msgid "Tomorrow"
+msgstr "Завтра"
+
+#: shopapp/templates/shopapp/shop-index.html:34
+msgid "Time running"
+msgstr "Времени прошло"
+
+#: shopapp/templates/shopapp/shop-index.html:34
+msgid "seconds"
+msgstr "секунд"
+
+#: shopapp/views.py:57
+msgid "no discount"
+msgstr "Нет скидки"

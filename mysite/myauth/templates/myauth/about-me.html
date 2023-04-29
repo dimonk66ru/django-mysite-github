@@ -1,30 +1,31 @@
 {% extends 'myauth/base.html' %}
+{% load i18n %}
 
 {% block title %}
-    About me
+    {% trans "About me" %}
 {% endblock %}
 
 {% block body %}
-    <h1>User info</h1>
+    <h1>{% trans "User info" %}</h1>
     {% if user.is_authenticated %}
-        <h2>Detail</h2>
+        <h2>{% trans "Detail" %}</h2>
         {% if user.profile.avatar %}
             <img src="{{ user.profile.avatar.url }}" alt="{{ user.profile.avatar.name }}"/>
         {% else %}
-            <div>No images uploaded yet</div>
+            <div>{% trans "No images uploaded yet" %}</div>
         {% endif %}
-        <p>Username: {{ user.username }}</p>
-        <p>First name: {{ user.first_name }}</p>
-        <p>Last name: {{ user.last_name }}</p>
-        <p>Email: {{ user.email }}</p>
-        <p>Bio: {{ user.profile.bio }}</p>
+        <p>{% trans "Username" %}: {{ user.username }}</p>
+        <p>{% trans "First name" %}: {{ user.first_name }}</p>
+        <p>{% trans "Last name" %}: {{ user.last_name }}</p>
+        <p>{% trans "Email" %}: {{ user.email }}</p>
+        <p>{% trans "Bio" %}: {{ user.profile.bio }}</p>
         <div>
-            <a href="{% url 'myauth:profiles-list' %}">Profiles list</a>
+            <a href="{% url 'myauth:profiles-list' %}">{% trans "Profiles list" %}</a>
         </div>
         <div>
-            <a href="{% url 'myauth:profile-update' pk=user.profile.pk %}">Update profile</a>
+            <a href="{% url 'myauth:profile-update' pk=user.profile.pk %}">{% trans "Update profile" %}</a>
         </div>
     {% else %}
-        <h2>User is anonymous</h2>
+        <h2>{% trans "User is anonymous" %}</h2>
     {% endif %}
 {% endblock %}

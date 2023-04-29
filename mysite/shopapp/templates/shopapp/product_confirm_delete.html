@@ -1,21 +1,22 @@
 {% extends 'shopapp/base.html' %}
+{% load i18n %}
 
 {% block title %}
-    Confirm archive {{ object.name }}
+    {% trans "Confirm archive" %} {{ object.name }}
 {% endblock %}
 
 {% block body %}
-    <h1>Are you sure, you want to archive {{ object.name }}?</h1>
+    <h1>{% trans "Are you sure, you want to archive" %} {{ object.name }}?</h1>
     <br>
     <div>
-        <a href="{% url 'shopapp:products_details' pk=object.pk %}">Back to product #{{ object.pk }}</a>
+        <a href="{% url 'shopapp:products_details' pk=object.pk %}">{% trans "Back to product" %} #{{ object.pk }}</a>
     </div>
     <br>
     <div>
         <form method="post">
             {% csrf_token %}
             {{ form.as_p }}
-            <button type="submit">Archive</button>
+            <button type="submit">{% trans "Archive" %}</button>
         </form>
     </div>
 {% endblock %}

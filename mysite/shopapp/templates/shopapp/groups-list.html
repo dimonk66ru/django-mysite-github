@@ -1,21 +1,22 @@
 {% extends 'shopapp/base.html' %}
+{% load i18n %}
 
 {% block title %}
-    Groups List
+    {% trans "Groups List" %}
 {% endblock %}
 
 {% block body %}
-    <h1>Groups:</h1>
+    <h1>{% trans "Groups" %}:</h1>
     <div>
         <form method="post">
             {% csrf_token %}
             {{ form.as_p }}
-            <button type="submit">Create</button>
+            <button type="submit">{% trans "Create" %}</button>
         </form>
     </div>
     <div>
     {% if not groups %}
-        <h3>No groups yet</h3>
+        <h3>{% trans "No groups yet" %}</h3>
     {% else %}
         <ul>
             {% for group in groups %}

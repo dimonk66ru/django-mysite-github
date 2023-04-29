@@ -8,6 +8,7 @@ from .models import Product, Order, ProductImage
 from .forms import ProductForm, OrderForm, GroupForm
 from django.views import View
 from django.views.generic import TemplateView, ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.utils.translation import gettext_lazy as _
 
 
 class ShopIndexView(View):
@@ -50,6 +51,11 @@ class ProductListView(ListView):
     template_name = "shopapp/products-list.html"
     queryset = Product.objects.filter(archived=False)
     context_object_name = "products"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['no_discount'] = _("no discount")
+        return context
 
 
 class ProductCreateView(PermissionRequiredMixin, CreateView):
