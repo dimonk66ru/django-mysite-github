@@ -13,8 +13,10 @@ from rest_framework.viewsets import ModelViewSet
 from rest_framework.filters import SearchFilter, OrderingFilter
 from django_filters.rest_framework import DjangoFilterBackend
 from .serializers import ProductSerializer, OrederSerializer
+from drf_spectacular.utils import extend_schema, OpenApiResponse
 
 
+@extend_schema(description="Product view CRUD")
 class ProductViewSet(ModelViewSet):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
@@ -41,6 +43,17 @@ class ProductViewSet(ModelViewSet):
         "created_at",
         "created_by",
     ]
+
+    @extend_schema(
+        summary="Get one product by ID",
+        description="Retrieves **product**, returns 404 if not found",
+        responses={
+            200: ProductSerializer,
+            404: OpenApiResponse(description="Empty response, product by id not found"),
+        }
+    )
+    def retrieve(self, *args, **kwargs):
+        return super().retrieve(*args, **kwargs)
 
 
 class OrderViewSet(ModelViewSet):
