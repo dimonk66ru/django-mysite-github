@@ -24,6 +24,7 @@ urlpatterns = [
     path('req/', include('requestdataapp.urls')),
     path('accounts/', include('myauth.urls')),
     path('i18n', include('django.conf.urls.i18n')),
+    path('api/', include('myapiapp.urls')),
 ]
 
 if settings.DEBUG:
