@@ -16,8 +16,8 @@ class Product(models.Model):
         verbose_name = _("product")
         verbose_name_plural = _("products")
 
-    name = models.CharField(max_length=100, verbose_name=_("name"))
-    description = models.TextField(null=False, blank=True, verbose_name=_("description"))
+    name = models.CharField(max_length=100, verbose_name=_("name"), db_index=True)
+    description = models.TextField(null=False, blank=True, verbose_name=_("description"), db_index=True)
     price = models.DecimalField(default=0, max_digits=8, decimal_places=2, verbose_name=_("price"))
     discount = models.PositiveSmallIntegerField(default=0, verbose_name=_("discount"))
     created_by = models.ForeignKey(User, on_delete=models.PROTECT, verbose_name=_("created by"))
