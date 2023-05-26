@@ -12,6 +12,7 @@ from .views import (
     ProfileUpdateView,
     ProfilesListView,
     ProfileView,
+    HelloView
 )
 
 app_name = "myauth"
@@ -21,6 +22,7 @@ urlpatterns = [
         template_name="myauth/login.html",
         redirect_authenticated_user=True,
     ), name="login"),
+    path("hello/", HelloView.as_view(), name="hello"),
     path("logout/", MyLogoutView.as_view(), name="logout"),
     path("cookie/get/", get_cookie_view, name="cookie-get"),
     path("cookie/set/", set_cookie_view, name="cookie-set"),
