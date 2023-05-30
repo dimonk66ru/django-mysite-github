@@ -1,4 +1,4 @@
-{% extends 'myauth/base.html' %}
+{% extends 'blogapp/base.html' %}
 {% load i18n %}
 
 {% block title %}
@@ -6,10 +6,14 @@
 {% endblock %}
 
 {% block body %}
+    <div>
+        <a href="{% url 'blogapp:article_create' %}">Create a new Article</a>
+    </div>
     <h1>Articles:</h1>
     {% if object_list %}
         <div>
         {% for article in object_list %}
+            <p><a href="{% url 'blogapp:article_detail' pk=article.pk %}">ID: #{{ article.pk }}</a></p>
             <p>title: {{ article.title }}</p>
             <p>pub_date: {{ article.pub_date }}</p>
             <p>author: {{ article.author }}</p>

@@ -19,6 +19,13 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 from drf_spectacular.views import SpectacularAPIView, SpectacularRedocView, SpectacularSwaggerView
+import debug_toolbar
+from django.urls import path
+
+
+def trigger_error(request):
+    division_by_zero = 1 / 0
+
 
 urlpatterns = [
     path('admin/doc/', include('django.contrib.admindocs.urls')),
@@ -32,6 +39,8 @@ urlpatterns = [
     path('api/schema/redoc/', SpectacularRedocView.as_view(url_name='schema'), name='redoc'),
     path('api/', include('myapiapp.urls')),
     path('blog/', include('blogapp.urls')),
+    path('__debug__/', include(debug_toolbar.urls)),
+    path('sentry-debug/', trigger_error),
 ]
 
 # urlpatterns += i18n_patterns(

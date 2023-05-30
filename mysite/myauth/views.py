@@ -2,7 +2,7 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required, permission_required, user_passes_test
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.mixins import UserPassesTestMixin
-from django.contrib.auth.views import LogoutView
+from django.contrib.auth.views import LoginView, LogoutView
 from django.http import HttpRequest, HttpResponse, JsonResponse
 from django.shortcuts import reverse, get_object_or_404
 from django.urls import reverse_lazy
@@ -10,11 +10,27 @@ from django.utils.translation import gettext as _
 from django.views.generic import TemplateView, CreateView, UpdateView, ListView, DetailView
 from django.views import View
 from .models import Profile
+import logging
+
+
+logger = logging.getLogger(__name__)
 
 
 class HelloView(View):
     def get(self, request: HttpRequest) -> HttpResponse:
         return HttpResponse("<h1>Hello world</h1>")
+
+
+class MyLoginView(LoginView):
+    template_name = "myauth/login.html"
+    redirect_authenticated_user = True
+
+    def post(self, request, *args, **kwargs):
+        form = self.get_form()
+        if form.is_valid():
+            user_name = form.cleaned_data.get('username')
+            logger.info(f'авторизовался пользователь: {user_name}')
+        return super().post(self, request, *args, **kwargs)
 
 
 class AboutMeView(TemplateView):

@@ -1,0 +1,21 @@
+{% extends 'blogapp/base.html' %}
+{% load i18n %}
+
+{% block title %}
+    Create Article
+{% endblock %}
+
+{% block body %}
+    <h1>Create a new article</h1>
+    <div>
+        <p>!Date format: YYYY-MM-DD hh:mm:ss!</p>
+        <form method="post">
+            {% csrf_token %}
+                {{ form.as_p }}
+            <button type="submit">Create</button>
+        </form>
+    </div>
+    <div>
+        <a href="{% url 'blogapp:articles' %}">Back to order list</a>
+    </div>
+{% endblock %}

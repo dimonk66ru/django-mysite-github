@@ -1,0 +1,33 @@
+{% extends 'blogapp/base.html' %}
+{% load i18n %}
+
+{% block title %}
+    Article #{{ object.pk }}
+{% endblock %}
+
+{% block body %}
+    <h1>Article {{ object.pk }}</h1>
+    <div>
+        <p>Title: {{ object.title }}</p>
+        <p>Article: <code>{{ object.content }}</code></p>
+        <p>Publicate date: {{ object.pub_date }}</p>
+        <p>Author: {{ object.author }}</p>
+        <div>
+            Tags in article:
+        </div>
+            <ul>
+                {% for tag in object.tags.all %}
+                    <li>{{ tag.name }}</li>
+                {% endfor %}
+            </ul>
+    </div>
+    <div>
+        <a href="{% url 'blogapp:article_update' pk=article.pk %}">Update Article</a>
+    </div>
+    <div>
+        <a href="{% url 'blogapp:article_delete' pk=article.pk %}">Delete Article</a>
+    </div>
+    <div>
+        <a href="{% url 'blogapp:articles' %}">Back to Article</a>
+    </div>
+{% endblock %}

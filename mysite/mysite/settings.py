@@ -14,6 +14,9 @@ from pathlib import Path
 
 from django.urls import reverse_lazy
 
+import sentry_sdk
+from sentry_sdk.integrations.django import DjangoIntegration
+
 import requestdataapp.middlewares
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -45,6 +48,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'django_filters',
     'drf_spectacular',
+    'debug_toolbar',
     'shopapp.apps.ShopappConfig',
     'requestdataapp.apps.RequestdataappConfig',
     'myauth.apps.MyauthConfig',
@@ -64,6 +68,7 @@ MIDDLEWARE = [
     'django.contrib.admindocs.middleware.XViewMiddleware',
     'requestdataapp.middlewares.set_useragent_on_request_middleware',
     'requestdataapp.middlewares.CountRequestsMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
 ROOT_URLCONF = 'mysite.urls'
@@ -174,22 +179,65 @@ SPECTACULAR_SETTINGS = {
 
 LOGGING = {
     'version': 1,
+    'disable_existing_loggers': False,
     'filters': {
         'require_debug_true': {
             '()': 'django.utils.log.RequireDebugTrue',
         },
     },
+    'formatters': {
+        'myformatter': {
+            'format': '{asctime} - {levelname} - {module} - {message}',
+            'style': '{',
+        },
+    },
     'handlers': {
-        'console': {
+        'console_db': {
             'level': 'DEBUG',
             'filters': ['require_debug_true'],
             'class': 'logging.StreamHandler',
+        },
+        'console_info': {
+            'level': 'INFO',
+            'class': 'logging.StreamHandler',
+            'formatter': 'myformatter',
+        },
+        'file_info': {
+            'level': 'INFO',
+            'class': 'logging.FileHandler',
+            'filename': 'info.log',
+            'formatter': 'myformatter',
         },
     },
     'loggers': {
         'django.db.backends': {
             'level': 'DEBUG',
-            'handlers': ['console'],
+            'handlers': ['console_db'],
+        },
+        'root': {
+            'level': 'INFO',
+            'handlers': ['console_info', 'file_info'],
         },
     },
 }
+
+INTERNAL_IPS = [
+    '127.0.0.1',
+]
+
+
+sentry_sdk.init(
+    dsn="https://c871b1ff70ce4f1db990f0617975af41@o4505274733494272.ingest.sentry.io/4505274742931456",
+    integrations=[
+        DjangoIntegration(),
+    ],
+
+    # Set traces_sample_rate to 1.0 to capture 100%
+    # of transactions for performance monitoring.
+    # We recommend adjusting this value in production.
+    traces_sample_rate=1.0,
+
+    # If you wish to associate users to errors (assuming you are using
+    # django.contrib.auth) you may enable sending PII data.
+    send_default_pii=True
+)
