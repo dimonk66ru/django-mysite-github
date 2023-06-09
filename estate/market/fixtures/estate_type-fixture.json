@@ -1,0 +1,30 @@
+[
+  {
+    "model": "market.estatetype",
+    "pk": 1,
+    "fields": {
+      "estate_type": "flat"
+    }
+  },
+  {
+    "model": "market.estatetype",
+    "pk": 2,
+    "fields": {
+      "estate_type": "house"
+    }
+  },
+  {
+    "model": "market.estatetype",
+    "pk": 3,
+    "fields": {
+      "estate_type": "warehouse"
+    }
+  },
+  {
+    "model": "market.estatetype",
+    "pk": 4,
+    "fields": {
+      "estate_type": "office"
+    }
+  }
+]

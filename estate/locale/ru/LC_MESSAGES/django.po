@@ -1,0 +1,269 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-06-09 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
+"(n%100>=11 && n%100<=14)? 2 : 3);\n"
+
+#: app_news/models.py:8
+msgid "news"
+msgstr "новости"
+
+#: app_news/models.py:13
+msgid "title"
+msgstr "заголовок"
+
+#: app_news/models.py:14
+msgid "text news"
+msgstr "текст новости"
+
+#: app_news/models.py:15
+msgid "is published"
+msgstr "опубликован"
+
+#: app_news/models.py:16 market/models.py:32
+msgid "created at"
+msgstr "создан в"
+
+#: app_news/models.py:17
+msgid "description"
+msgstr "описание"
+
+#: app_news/models.py:18
+msgid "published at"
+msgstr "опубликован в"
+
+#: app_news/templates/app_news/newsitem_detail.html:5
+#: market/templates/market/about.html:22
+msgid "News"
+msgstr "Новости"
+
+#: market/models.py:8 market/models.py:13 market/models.py:35
+msgid "room count"
+msgstr "число комнат"
+
+#: market/models.py:18 market/models.py:23 market/models.py:34
+msgid "estate type"
+msgstr "тип недвижимости"
+
+#: market/models.py:28
+msgid "estate"
+msgstr "недвижимость"
+
+#: market/models.py:30
+msgid "address"
+msgstr "адрес"
+
+#: market/models.py:31
+msgid "price"
+msgstr "цена"
+
+#: market/models.py:33 market/templates/market/estate-list.html:19
+msgid "seller"
+msgstr "продавец"
+
+#: market/templates/market/about.html:5
+msgid "About"
+msgstr "О нас"
+
+#: market/templates/market/about.html:10
+msgid ""
+"\n"
+"        <h1>What is it N1.RU</h1>\n"
+"        <p>N1.RU It is a modern aggregator where hundreds of thousands of "
+"users search and find real estate every day.\n"
+"            Our clients get access to the largest database of verified ads, "
+"a convenient filter system,\n"
+"            augmented reality, map search and detailed analysis of housing "
+"prices.\n"
+"            All this makes real estate search a pleasure!</p>\n"
+"    "
+msgstr ""
+"\n"
+"        <h1>Что такое N1.RU</h1>\n"
+"        <p>N1.RU является современным агрегатором, где ежедневно ищут и находят недвижимость сотни тысяч "
+"пользователей.\n"
+"            Наши клиенты получают доступ к крупнейшей базе проверенных объявлений, "
+"удобной системе фильтров, \n"
+"            дополненной реальности, поиску по карте и подробной аналитике  "
+"цен на жильё.\n"
+"            Все это превращает поиск недвижимости в удовольствие!</p>\n"
+"    "
+
+#: market/templates/market/about.html:18
+msgid "List Of Estate for Sale"
+msgstr "Список Недвижимости для продажи"
+
+#: market/templates/market/about.html:20
+msgid "Contacts Sellers"
+msgstr "Контакты Продавцов"
+
+#: market/templates/market/estate-list.html:5
+msgid "Estates list"
+msgstr "Список Недвижимости"
+
+#: market/templates/market/estate-list.html:9
+msgid "Estate"
+msgstr "Недвижимость"
+
+#: market/templates/market/estate-list.html:13
+msgid "Sell"
+msgstr "Продаётся"
+
+#: market/templates/market/estate-list.html:14
+msgid "Type Estate"
+msgstr "Тип Недвижимости"
+
+#: market/templates/market/estate-list.html:15
+msgid "Count room"
+msgstr "Количество комнат"
+
+#: market/templates/market/estate-list.html:16
+msgid "Address"
+msgstr "Адрес"
+
+#: market/templates/market/estate-list.html:17
+msgid "Price"
+msgstr "Цена"
+
+#: market/templates/market/estate-list.html:21
+msgid "Created at"
+msgstr "Создан в"
+
+#: market/templates/market/estate-list.html:25
+msgid "No estate yet"
+msgstr "Еще нет недвижимости"
+
+#: myauth/admin.py:11
+msgid "profile name"
+msgstr "имя профиля"
+
+#: myauth/apps.py:8
+msgid "authentication"
+msgstr "аунтификация"
+
+#: myauth/models.py:15
+msgid "profile"
+msgstr "профиль"
+
+#: myauth/models.py:16
+msgid "profiles"
+msgstr "профили"
+
+#: myauth/models.py:21
+msgid "user"
+msgstr "пользователь"
+
+#: myauth/models.py:22
+msgid "bio"
+msgstr "биография"
+
+#: myauth/models.py:23
+msgid "phone"
+msgstr "телефон"
+
+#: myauth/models.py:24
+msgid "avatar"
+msgstr "аватар"
+
+#: myauth/templates/myauth/login.html:5 myauth/templates/myauth/login.html:9
+#: myauth/templates/myauth/login.html:16
+msgid "Login"
+msgstr "Вход"
+
+#: myauth/templates/myauth/login.html:19
+msgid "Or Create new User"
+msgstr "Или создать нового пользователя"
+
+#: myauth/templates/myauth/login.html:21
+#: myauth/templates/myauth/register.html:5
+#: myauth/templates/myauth/register.html:9
+#: myauth/templates/myauth/register.html:13
+msgid "Register"
+msgstr "Регистрация"
+
+#: myauth/templates/myauth/profile-details.html:5
+msgid "Profile Details"
+msgstr "Детали Профиля"
+
+#: myauth/templates/myauth/profile-details.html:9
+msgid "Profile info"
+msgstr "Информация о профиле"
+
+#: myauth/templates/myauth/profile-details.html:13
+#: myauth/templates/myauth/profiles-list.html:16
+msgid "No images uploaded yet"
+msgstr "Картинка ещё не загружена "
+
+#: myauth/templates/myauth/profile-details.html:15
+msgid "Username"
+msgstr "Имя Пользавателя"
+
+#: myauth/templates/myauth/profile-details.html:16
+msgid "First name"
+msgstr "Имя"
+
+#: myauth/templates/myauth/profile-details.html:17
+msgid "Last name"
+msgstr "Фамилия"
+
+#: myauth/templates/myauth/profile-details.html:18
+msgid "Email"
+msgstr "Электронная почта"
+
+#: myauth/templates/myauth/profile-details.html:19
+msgid "Bio"
+msgstr "Биография"
+
+#: myauth/templates/myauth/profile-details.html:20
+msgid "Phone"
+msgstr "Телефон"
+
+#: myauth/templates/myauth/profile-details.html:22
+#: myauth/templates/myauth/profiles-list.html:5
+msgid "Profiles list"
+msgstr "Список профилей"
+
+#: myauth/templates/myauth/profile-details.html:26
+#: myauth/templates/myauth/profile_update_form.html:9
+msgid "Update profile"
+msgstr "Обновить профиль"
+
+#: myauth/templates/myauth/profile_update_form.html:5
+msgid "Update Profile"
+msgstr "Обновить Профиль"
+
+#: myauth/templates/myauth/profile_update_form.html:14
+msgid "Update"
+msgstr "Обновить"
+
+#: myauth/templates/myauth/profile_update_form.html:18
+msgid "Back to profile"
+msgstr "Обратно к профилю"
+
+#: myauth/templates/myauth/profiles-list.html:9
+msgid "Profiles"
+msgstr "Профили"
+
+#: myauth/templates/myauth/profiles-list.html:20
+msgid "name"
+msgstr "имя"
+
+#: myauth/templates/myauth/profiles-list.html:27
+msgid "No profiles yet"
+msgstr "Ещё нет профилей"

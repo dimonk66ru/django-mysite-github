@@ -1,0 +1,30 @@
+{% extends 'myauth/base.html' %}
+{% load i18n %}
+
+{% block title %}
+    {% trans "Profiles list" %}
+{% endblock %}
+
+{% block body %}
+    <a href="{% url "market:about" %}">{% trans "Home" %}</a>
+    <h1>{% trans "Profiles" %}:</h1>
+    {% if profiles %}
+        <div>
+        {% for profile in profiles %}
+            {% if profile.avatar %}
+                <img src="{{ profile.avatar.url }}" alt="{{ profile.avatar.name }}"/>
+            {% else %}
+                <div>{% trans "No images uploaded yet" %}</div>
+            {% endif %}
+            <div>
+                <a href="{% url "myauth:profile-details" pk=profile.pk %}">
+                    <p>{% trans "name" %}: {{ profile.user.username }}</p>
+                </a>
+            </div>
+            <br><br>
+        {% endfor %}
+        </div>
+    {% else %}
+        <h3>{% trans "No profiles yet" %}</h3>
+    {% endif %}
+{% endblock %}
