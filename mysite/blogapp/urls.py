@@ -5,6 +5,7 @@ from .views import (
     ArticleUpdateView,
     ArticleDeleteView,
     ArticleDetailView,
+    LatestArticleFeed,
 )
 
 app_name = "blogapp"
@@ -15,4 +16,5 @@ urlpatterns = [
     path("articles/<int:pk>/", ArticleDetailView.as_view(), name="article_detail"),
     path("articles/<int:pk>/update/", ArticleUpdateView.as_view(), name="article_update"),
     path("articles/<int:pk>/delete/", ArticleDeleteView.as_view(), name="article_delete"),
+    path("articles/latest/feed/", LatestArticleFeed(), name="articles-feed"),
 ]

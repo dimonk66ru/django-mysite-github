@@ -32,7 +32,21 @@ SECRET_KEY = 'django-insecure-%%m5kws)@^#(emo5w!sai9*i^48hde@*-m_flltw5setsc5j15
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    '0.0.0.0',
+    '127.0.0.1',
+]
+INTERNAL_IPS = [
+    '127.0.0.1',
+]
+
+if DEBUG:
+    import socket
+    hostname, _, ips = socket.gethostbyname_ex(socket.gethostname())
+    INTERNAL_IPS.append("10.0.2.2")
+    INTERNAL_IPS.extend(
+        [ip[: ip.rfind('.')] + '.1' for ip in ips]
+    )
 
 
 # Application definition
@@ -45,6 +59,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.admindocs',
+    'django.contrib.sitemaps',
     'rest_framework',
     'django_filters',
     'drf_spectacular',
@@ -57,6 +72,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    # 'django.middleware.cache.UpdateCacheMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.locale.LocaleMiddleware',
@@ -69,6 +85,7 @@ MIDDLEWARE = [
     'requestdataapp.middlewares.set_useragent_on_request_middleware',
     'requestdataapp.middlewares.CountRequestsMiddleware',
     'debug_toolbar.middleware.DebugToolbarMiddleware',
+    # 'django.middleware.cache.FetchFromCacheMiddleware',
 ]
 
 ROOT_URLCONF = 'mysite.urls'
@@ -101,6 +118,16 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+CACHES = {
+    "default": {
+        "BACKEND": "django.core.cache.backends.filebased.FileBasedCache",
+        "LOCATION": "/var/tmp/django_cache",
+    #     "LOCATION": "c:/foo/bar",
+    },
+}
+
+CACHES_MIDDLEWARE_SECONDS = 200
 
 
 # Password validation
@@ -161,6 +188,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_REDIRECT_URL = reverse_lazy('myauth:about-me')
 LOGIN_URL = reverse_lazy('myauth:login')
 
+LOGFILE_NAME = BASE_DIR / 'log.txt'
+LOGFILE_SIZE = 5000
+LOGFILE_COUNT = 3
+
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 10,
@@ -188,12 +219,16 @@ LOGGING = {
     'formatters': {
         'myformatter': {
             'format': '{asctime} - {levelname} - {module} - {message}',
+
             'style': '{',
+        },
+        'verbose': {
+            'format': '%(asctime)s [%(levelname)s]: %(message)s',
         },
     },
     'handlers': {
         'console_db': {
-            'level': 'DEBUG',
+            'level': 'INFO',
             'filters': ['require_debug_true'],
             'class': 'logging.StreamHandler',
         },
@@ -208,6 +243,14 @@ LOGGING = {
             'filename': 'info.log',
             'formatter': 'myformatter',
         },
+        'logfile': {
+            'level': 'DEBUG',
+            'class': 'logging.handlers.RotatingFileHandler',
+            'filename': LOGFILE_NAME,
+            'maxBytes': LOGFILE_SIZE,
+            'backupCount': LOGFILE_COUNT,
+            'formatter': 'verbose'
+        },
     },
     'loggers': {
         'django.db.backends': {
@@ -215,8 +258,8 @@ LOGGING = {
             'handlers': ['console_db'],
         },
         'root': {
-            'level': 'INFO',
-            'handlers': ['console_info', 'file_info'],
+            'level': 'DEBUG',
+            'handlers': ['console_info', 'file_info', 'logfile'],
         },
     },
 }

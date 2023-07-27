@@ -136,3 +136,5 @@ first_djangosite/
 textfile
 probe.py
 pics/
+log.txt
+log.txt.*

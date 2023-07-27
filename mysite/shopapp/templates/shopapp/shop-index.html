@@ -1,5 +1,6 @@
 {% extends 'shopapp/base.html' %}
 {% load i18n %}
+{% load cache %}
 
 {% block title %}
     {% trans "Shop Index" %}
@@ -34,8 +35,10 @@
     {% trans "Time running" %}: {{ time_running|floatformat:"0" }} {% trans "seconds" %}
 </div>
 
+{% cache 60 lorem %}
 <div>
     {% lorem 3 p random %}
 </div>
+{% endcache %}
 
 {% endblock %}

@@ -1,5 +1,6 @@
 {% extends 'myauth/base.html' %}
 {% load i18n %}
+{% load cache %}
 
 {% block title %}
     {% trans "About me" %}
@@ -8,6 +9,7 @@
 {% block body %}
     <h1>{% trans "User info" %}</h1>
     {% if user.is_authenticated %}
+        {% cache 60 userinfo user.username %}
         <h2>{% trans "Detail" %}</h2>
         {% if user.profile.avatar %}
             <img src="{{ user.profile.avatar.url }}" alt="{{ user.profile.avatar.name }}"/>
@@ -19,6 +21,7 @@
         <p>{% trans "Last name" %}: {{ user.last_name }}</p>
         <p>{% trans "Email" %}: {{ user.email }}</p>
         <p>{% trans "Bio" %}: {{ user.profile.bio }}</p>
+        {% endcache %}
         <div>
             <a href="{% url 'myauth:profiles-list' %}">{% trans "Profiles list" %}</a>
         </div>

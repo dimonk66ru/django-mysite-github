@@ -7,8 +7,10 @@ from django.http import HttpRequest, HttpResponse, JsonResponse
 from django.shortcuts import reverse, get_object_or_404
 from django.urls import reverse_lazy
 from django.utils.translation import gettext as _
+from django.views.decorators.cache import cache_page
 from django.views.generic import TemplateView, CreateView, UpdateView, ListView, DetailView
 from django.views import View
+from random import random
 from .models import Profile
 import logging
 
@@ -93,9 +95,10 @@ def set_cookie_view(request: HttpRequest) -> HttpResponse:
     return response
 
 
+@cache_page(60 * 2)
 def get_cookie_view(request: HttpRequest) -> HttpResponse:
     value = request.COOKIES.get("fizz", "default value")
-    return HttpResponse(f"Cookie value: {value!r}")
+    return HttpResponse(f"Cookie value: {value!r} + {random()}")
 
 
 @permission_required("myauth.view_profile", raise_exception=True)
