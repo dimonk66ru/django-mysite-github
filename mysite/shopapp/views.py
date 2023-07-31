@@ -9,6 +9,7 @@ from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.urls import reverse_lazy
 from .models import Product, Order, ProductImage
 from .forms import ProductForm, OrderForm, GroupForm
+from django.contrib.auth.models import User
 from django.views import View
 from django.views.decorators.cache import cache_page
 from django.views.generic import TemplateView, ListView, DetailView, CreateView, UpdateView, DeleteView
@@ -21,7 +22,7 @@ from rest_framework.request import Request
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
 from django_filters.rest_framework import DjangoFilterBackend
-from .serializers import ProductSerializer, OrederSerializer
+from .serializers import ProductSerializer, OrderSerializer
 from drf_spectacular.utils import extend_schema, OpenApiResponse
 from .common import save_csv_products
 
@@ -112,7 +113,7 @@ class ProductViewSet(ModelViewSet):
 
 class OrderViewSet(ModelViewSet):
     queryset = Order.objects.all()
-    serializer_class = OrederSerializer
+    serializer_class = OrderSerializer
     filter_backends = [
         SearchFilter,
         DjangoFilterBackend,
@@ -347,3 +348,40 @@ class OrdersDataExportView(UserPassesTestMixin, View):
             for order in orders
         ]
         return JsonResponse({"orders": orders_data})
+
+
+class UserOrdersListView(LoginRequiredMixin, ListView):
+    template_name = "shopapp/user_orders_list.html"
+
+    def get_queryset(self):
+        user_id = self.kwargs["user_id"]
+        queryset = Order.objects.select_related("user").prefetch_related("products").filter(user_id=user_id)
+        self.owner = get_object_or_404(User, pk=user_id)
+        self.count_orders = len(queryset)
+        return queryset
+
+    def get_context_data(self, **kwargs):
+        data = super().get_context_data(**kwargs)
+        data['count_orders'] = self.count_orders
+        data['owner'] = self.owner
+        return data
+
+
+class UserOrdersExportView(LoginRequiredMixin, View):
+
+    def get(self, request: HttpRequest, **kwargs) -> JsonResponse:
+        user_id = self.kwargs["user_id"]
+        owner = get_object_or_404(User, pk=user_id)
+        cache_key = f"orders_{owner}"
+        serialized_data = cache.get(cache_key)
+        if serialized_data is None:
+            orders_data = (
+                Order.objects
+                .select_related("user")
+                .prefetch_related("products")
+                .filter(user_id=user_id)
+                .order_by("pk")
+            )
+            serialized_data = OrderSerializer(orders_data, many=True)
+            cache.set(cache_key, serialized_data, 300)
+        return JsonResponse({"orders": serialized_data.data})
