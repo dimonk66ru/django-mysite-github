@@ -12,3 +12,4 @@ RUN pip install -r requirements.txt
 COPY mysite .
 
 #CMD ["python", "manage.py", "runserver"]
+CMD ["gunicorn", "mysite.wsgi:application", "--bind", "0.0.0.0:8080"]
