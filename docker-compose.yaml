@@ -4,11 +4,6 @@ services:
   app:
     build:
       dockerfile: ./Dockerfile
-    command:
-      - gunicorn
-      - mysite.wsgi:application
-      - --bind
-      - "0.0.0.0:8000"
     ports:
       - "8000:8000"
     restart: always
@@ -19,6 +14,12 @@ services:
       options:
         max-file: "10"
         max-size: "200k"
+    command: >
+      bash -c "gunicorn mysite.wsgi:application --bind "0.0.0.0:8000"
+      && python /app/manage.py collectstatic --no-input
+      && python /app/manage.py migrate
+      && python /app/manage.py compilemessages
+      && python /app/manage.py loaddata db.json"
 
 #      driver: loki
 #      options:
@@ -40,3 +41,17 @@ services:
 
     volumes:
       - ./mysite/database:/app/database
+      - ./mysite/static:/app/static
+      - ./mysite/uploads:/app/uploads
+      - ./mysite/locale:/app/locale
+  nginx:
+    build:
+      dockerfile: ./docker/nginx/Dockerfile
+    container_name: app_nginx
+    volumes:
+      - ./mysite/static:/app/static
+      - ./mysite/uploads:/app/uploads
+    depends_on:
+      - app
+    ports:
+      - "80:80"

@@ -20,7 +20,6 @@ from django.urls import reverse_lazy
 import sentry_sdk
 from sentry_sdk.integrations.django import DjangoIntegration
 
-import requestdataapp.middlewares
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -132,7 +131,7 @@ CACHES = {
     "default": {
         "BACKEND": "django.core.cache.backends.filebased.FileBasedCache",
         "LOCATION": "/var/tmp/django_cache",
-    #     "LOCATION": "c:/foo/bar",
+        # "LOCATION": "c:/foo/bar",
     },
 }
 
@@ -176,7 +175,7 @@ LANGUAGES = [
     ('en', 'English'),
 ]
 
-LOCALE_PATHS = [os.path.join(BASE_DIR, 'locale'),]
+LOCALE_PATHS = [os.path.join(BASE_DIR, 'locale'), ]
 # LOCALE_PATHS =[
 #     BASE_DIR/'locale/'
 # ]
@@ -184,7 +183,8 @@ LOCALE_PATHS = [os.path.join(BASE_DIR, 'locale'),]
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+STATIC_ROOT = BASE_DIR / 'static'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'uploads'
