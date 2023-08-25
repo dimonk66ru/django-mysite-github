@@ -138,3 +138,5 @@ probe.py
 pics/
 log.txt
 log.txt.*
+static
+uploads
