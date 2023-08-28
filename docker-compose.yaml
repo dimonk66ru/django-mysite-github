@@ -24,7 +24,7 @@ services:
     volumes:
       - ./mysite/database:/app/database
       - ./mysite/static:/app/static
-      - ./mysite/uploads:/app/uploads
+      - ./mysite/media:/app/media
       - ./mysite/locale:/app/locale
   nginx:
     build:
@@ -32,7 +32,7 @@ services:
     container_name: app_nginx
     volumes:
       - ./mysite/static:/app/static
-      - ./mysite/uploads:/app/uploads
+      - ./mysite/media:/app/media
     depends_on:
       - app
     ports:
